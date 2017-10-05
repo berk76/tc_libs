@@ -303,6 +303,7 @@ Waveform Select
 */
 
 #include <dos.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "adli_tc.h"
@@ -333,7 +334,7 @@ static AL_SONG *song = NULL;
 /* Active channel */           
 static int achannel = 0;
 
-static int al_test_al();
+static int al_test_al(void);
 static unsigned char adlibjam(unsigned char c);
 static void soundport(char index, char value);
 static void al_play(unsigned channel, unsigned octave, unsigned freq);
@@ -513,7 +514,7 @@ long al_play_sound(enum W_ACTION a) {
 *  Static functions
 */
 
-int al_test_al() {
+int al_test_al(void) {
         unsigned char i, r1, r2;
         /* 1. Reset T1 and T2: write 60h to register 4. */
         soundport(0x04, 0x60);
