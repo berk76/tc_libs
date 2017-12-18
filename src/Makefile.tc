@@ -23,23 +23,21 @@ CFLAGS=-O2 -G -Z -m$(MODEL)
 LDFLAGS=-m$(MODEL) -f
 
 
-all: adlib.exe
+all: demo.exe
 
 .c.obj:
 	$(CC) -c $(CFLAGS) $*.c
 
-main.obj: main.c adli_tc.h bnk_file.h wait_tc.h res_snd.h tui_tc.h
+main.obj: main.c sound_tc.h tui_tc.h wait_tc.h res_tc.h
+
+sound_tc.obj: sound_tc.c sound_tc.h wait_tc.h
 
 tui_tc.obj: tui_tc.c tui_tc.h wait_tc.h
 
 wait_tc.obj: wait_tc.c wait_tc.h
 
-bnk_file.obj: bnk_file.c bnk_file.h
-
-adli_tc.obj: adli_tc.c adli_tc.h wait_tc.h
-
-adlib.exe: main.obj tui_tc.obj wait_tc.obj bnk_file.obj adli_tc.obj  
-	$(LD) $(LDFLAGS) -eadlib.exe main.obj tui_tc.obj wait_tc.obj bnk_file.obj adli_tc.obj
+demo.exe: main.obj sound_tc.obj tui_tc.obj wait_tc.obj  
+	$(LD) $(LDFLAGS) -edemo.exe main.obj sound_tc.obj tui_tc.obj wait_tc.obj
 
 clean:
 	-del *.obj
