@@ -43,10 +43,20 @@ static char *candle = "            _...._\n"
                       "    )    . <'-. ' .-',  _'._'.\n"
                       "   '-.  '.-'`  )'/    \\/ \\(\n"
                       "      `\\(      `;";
+                      
+static char *candl1 = "            _...._\n"
+                      "          .:::\\::::.\n"
+                      "         :::::)`\\::::\n"
+                      "         ::::/  /::::";
+
+static char *candl2 = "            _...._\n"
+                      "          .:::/::::.\n"
+                      "         :::/`(::::::\n"
+                      "         :::\\  \\:::::";
 
 
 /* Pujdem spolu do betlema */
-#define SD1 20
+#define SD1 23
 #define SR1 60
 static SND_PLAY_NOTE s1[] = {{F4,N8},{F4,N8},{C4,N8},{C4,N8},
                              {B4,N8},{B4,N8},{F4,N8},{F4,N8},
@@ -78,9 +88,12 @@ static JOB_T *j3;       /* sound */
 static JOB_T *j4;       /* animations */
 #define j4p -1
 
+static int candle_x, candle_y;
+
 static SND_SONG song;
 static int play_sound;
 
+static long animate_scr(enum W_ACTION a);
 static long draw_floating_text(enum W_ACTION a);
 
 
@@ -92,9 +105,13 @@ int main() {
         j4 = NULL;
         
         
-        /* play */        
+        /* play */
+        candle_x = 25;
+        candle_y = 3;        
         tui_cls_win(mainw, FALSE);
-        tui_draw_box(25, 3, TUI_COL, TUI_BKCOL, candle, FALSE);
+        tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candle, FALSE);
+        j4 = w_register_job(18, j4p, &animate_scr);
+        
         song.duration = SD1;
         song.rest = SR1;
         song.song = s1;
@@ -104,6 +121,8 @@ int main() {
         
         w_unregister_job(j3);
         j3 = NULL;
+        w_unregister_job(j4);
+        j4 = NULL;
         snd_speaker(0);
         
 
@@ -116,6 +135,49 @@ int main() {
         w_unregister_job(j2);
         tui_delete_win(mainw);
         return 0;
+}
+
+
+long animate_scr(enum W_ACTION a) {
+        static int step = -1;
+        static int paused = 0;
+        int r;
+        
+        
+        if ((a == RESET) || (step == -1)) {
+                step = 0;
+                paused = 0;
+                return 0;        
+        }
+        
+        if (a == PAUSE) {
+                paused = 1;
+        }
+        
+        if (a == UNPAUSE) {
+                paused = 0;
+        }            
+        
+        if (a == RUN) {
+                if (paused != 0)
+                        return 0;
+                        
+                switch (step) {
+                        case 0:
+                                tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candl2, FALSE);
+                                tui_flush();
+                                step = 1;
+                                r = 5;
+                                break;
+                        case 1:
+                                tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candl1, FALSE);
+                                tui_flush();
+                                step = 0;
+                                r = 30;
+                                break;
+                }        
+        }
+        return r;
 }
 
 
