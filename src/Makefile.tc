@@ -23,12 +23,13 @@ CFLAGS=-O2 -G -Z -m$(MODEL)
 LDFLAGS=-m$(MODEL) -f
 
 
-all: demo.exe
+all: xmas.exe
 
 .c.obj:
 	$(CC) -c $(CFLAGS) $*.c
 
-main.obj: main.c sound_tc.h tui_tc.h wait_tc.h res_tc.h
+
+xmas.obj: xmas.c sound_tc.h tui_tc.h wait_tc.h
 
 sound_tc.obj: sound_tc.c sound_tc.h wait_tc.h
 
@@ -36,8 +37,10 @@ tui_tc.obj: tui_tc.c tui_tc.h wait_tc.h
 
 wait_tc.obj: wait_tc.c wait_tc.h
 
-demo.exe: main.obj sound_tc.obj tui_tc.obj wait_tc.obj  
-	$(LD) $(LDFLAGS) -edemo.exe main.obj sound_tc.obj tui_tc.obj wait_tc.obj
+
+xmas.exe: xmas.obj sound_tc.obj tui_tc.obj wait_tc.obj  
+	$(LD) $(LDFLAGS) -exmas.exe xmas.obj sound_tc.obj tui_tc.obj wait_tc.obj
+
 
 clean:
 	-del *.obj

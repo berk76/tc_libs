@@ -27,7 +27,6 @@ static void calc_box_size(int *size_x, int *size_y, char *content);
 static void draw_box(int x, int y, int size_x, int size_y, char * content, G_BOOL_T add_border);
 static void del_box(int x, int y, int size_x, int size_y);
 static int tui_wait_for_key(char *s);
-static void tui_wait_for_any_key(void);
 static int get_attribute(void);
 
 
