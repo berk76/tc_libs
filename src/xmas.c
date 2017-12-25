@@ -24,6 +24,31 @@
 
 static char *floating_text = "Vesele Vanoce! ";
 
+static char *betlem = "                            -\n" 
+                      "                          /\\O/\\\n"
+                      "                         {_/-\\_}\n"
+                      "                           /_\\\n"
+                      "\n"
+                      ".-----------------------------------------------------.\n"
+                      "| __  ___________________   |   _________________  __ |\n"
+                      "|| / /                    '.|.'                  \\ \\ ||\n"
+                      "||/ /            ___     -= + =-                  \\ \\||\n"
+                      "|  /           *******    .'|'.      ___           \\  |\n"
+                      "| /            /-====)      |      *******          \\ |\n"
+                      "||             | / -(       |      (_.- ))           ||\n"
+                      "||            / /  _/               )- ) ))          ||\n"
+                      "||            | |-(    _            \\_(  ((          ||\n"
+                      "||            / |  \\  //|        _    )) ) )         ||\n"
+                      "||           /  \\   \\/\\/        |\\\\  /'-( (          ||\n"
+                      "||          |   |\\    /    ***   \\/\\/  / ) )         ||\n"
+                      "||          `-;/==;--'     .=.    \\   / (  (         ||\n"
+                      "||            |    \\    _\\/(_)\\/_  '-;==)   )        ||\n"
+                      "||            |     \\    |'---'|    /  (   (         ||\n"
+                      "||            |      \\  _|:.   |_  /   )    )        ||\n"
+                      "||          _/        |  /\\:. /\\  |   (     (        ||\n"
+                      "||       .-/         /     '='    \\    (     )-.     ||\n"
+                      "||jgs   `\"\"---`-----`              `----`----`\"\"`    ||";
+
 static char *candle = "            _...._\n"
                       "          .:::\\::::.\n"
                       "         :::::)`\\::::\n"
@@ -72,6 +97,24 @@ static SND_PLAY_NOTE s1[] = {{F4,N8},{F4,N8},{C4,N8},{C4,N8},
                              {F4,N8},{B4,N8},{F4,N8},{REST,N8},
                              {REPEAT,N1}
                 };
+                
+/* Ticha noc */
+#define SD2 17
+#define SR2 60
+static SND_PLAY_NOTE s2[] = {{F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
+                             {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
+                             {C5,N2},{C5,N4},{B4,N2DOT},
+                             {A4,N2},{A4,N4},{F4,N2DOT},
+                             {G4,N2},{G4,N4},{A4,N4},{B4,N4},{G4,N4},
+                             {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
+                             {G4,N2},{G4,N4},{A4,N4DOT},{B4,N8},{G4,N4},
+                             {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
+                             {C5,N4},{C5,N4},{C5,N4},{E5,N4DOT},{C5,N8},{B4,N4},
+                             {B4,N2DOT},{D5,N2DOT},
+                             {B4,N4DOT},{F4,N8},{D4,N4},{F4,N4DOT},{E4,N8},{C4,N4},
+                             {A3,N2DOT},{A3,N2},{REST,N2},
+                             {REPEAT,N1}
+                };
 
 
 #define BUFF_LEN 512
@@ -105,12 +148,9 @@ int main() {
         j4 = NULL;
         
         
-        /* play */
-        candle_x = 25;
-        candle_y = 3;        
+        /* play */ 
         tui_cls_win(mainw, FALSE);
-        tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candle, FALSE);
-        j4 = w_register_job(18, j4p, &animate_scr);
+        tui_draw_box(13, 1, TUI_COL, TUI_BKCOL, betlem, FALSE);
         
         song.duration = SD1;
         song.rest = SR1;
@@ -121,9 +161,28 @@ int main() {
         
         w_unregister_job(j3);
         j3 = NULL;
+        snd_speaker(0);
+        
+        candle_x = 25;
+        candle_y = 4;        
+        tui_cls_win(mainw, FALSE);
+        tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candle, FALSE);
+        j4 = w_register_job(18, j4p, &animate_scr);
+        
+        song.duration = SD2;
+        song.rest = SR2;
+        song.song = s2;
+        snd_setsong(&song);
+        j3 = w_register_job(6, j3p, &snd_play_sound);
+        tui_wait_for_any_key();
+        
+        w_unregister_job(j3);
+        j3 = NULL;
+        snd_speaker(0);
+        
         w_unregister_job(j4);
         j4 = NULL;
-        snd_speaker(0);
+        
         
 
         /* quit */
