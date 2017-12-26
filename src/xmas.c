@@ -24,9 +24,12 @@
 
 static char *floating_text = "Merry Christmas to all users of oldcomp.cz, "
 "doshaven.eu, high-voltage.cz and also to all good people around the World! "
-"  - berk -  (see github.com/berk76/tc_libs for sources)";
+"  - berk -  "
+"Learn more about jgs: en.wikipedia.org/wiki/Joan_Starksee, "
+"For sources see: github.com/berk76/tc_libs";
 
 /* Colors: */
+/*
 static char *colors = "\x01\x01 blue            \\x01\\x01\n"
                       "\x01\x02 green           \\x01\\x02\n"
                       "\x01\x03 cyan            \\x01\\x03\n"
@@ -42,6 +45,7 @@ static char *colors = "\x01\x01 blue            \\x01\\x01\n"
                       "\x01\x0d lightmagenta    \\x01\\x0d\n"
                       "\x01\x0e yellow          \\x01\\x0e\n"
                       "\x01\x0f white           \\x01\\x0f\n";
+*/
 
 static char *betlem = "                            \x01\x0f-\n" 
                       "                          \x01\x0e/\\\x01\x0dO\x01\x0e/\\\n"
@@ -89,35 +93,35 @@ static char *cross3 = "\x01\x0f\\\x01\x0e  |  \x01\x0f/\n"
                       "\x01\x0f/  \x01\x0e|  \x01\x0f\\\n"
                       "\x01\x0e   |";
    
-static char *candle = "            _...._\n"
-                      "          .:::\\::::.\n"
-                      "         :::::)`\\::::\n"
-                      "         ::::/  /::::\n"
-                      "         :::| , |::::\n"
-                      "          '::\\;/:::'\n"
-                      "         /`\"'-:___\n"
+static char *candle = "\x01\x0b            _...._\n"
+                      "          .:::\x01\x0e\\\x01\x0b::::.\n"
+                      "         :::::\x01\x0e)`\\\x01\x0b::::\n"
+                      "         ::::\x01\x0e/  /\x01\x0b::::\n"
+                      "         :::\x01\x0e| , |\x01\x0b::::\n"
+                      "          '::\x01\x0e\\;/\x01\x0b:::'\n"
+                      "\x01\x07         /`\"'-\x01\x06:\x01\x07___\n"
                       "        |        _`\\\n"
-                      "        | .-.   ( \\ ;   ,    ,\n"
-                      " ,  ,   \\_)  '--' | (   |\\_.'/\n"
-                      " )`-'\\__,|:.      \\_)|\\_/ .`(_\n"
-                      " / `.   (|::.     _|  . '_.-'`\n"
-                      "'--. `'. |:::.   (_)_'  (\n"
-                      "   /.-. `\\::::._(_)(_)`--'\n"
+                      "        | .-.   ( \\ ;   \x01\x02,    ,\n"
+                      " ,  ,  \x01\x07 \\_)  '--' | (   \x01\x02|\\_.'/\n"
+                      " )`-'\\__,\x01\x07|:.      \\_)\x01\x02|\\_/ .`(_\n"
+                      " / `.   (\x01\x07|::.     \x01\x0c_\x01\x07|\x01\x02  . '_.-'`\n"
+                      "'--. `'. \x01\x07|:::.   \x01\x0c(_)_\x01\x02'  (\n"
+                      "   /.-. `\x01\x07\\::::._\x01\x0c(_)(_)\x01\x02`--'\n"
                       "    `   \\/ jgs _). '-.  '--._\n"
                       "     _.-'  . `)  :  ( `-.   <\n"
-                      "    )    . <'-. ' .-',  _'._'.\n"
-                      "   '-.  '.-'`  )'/    \\/ \\(\n"
-                      "      `\\(      `;";
+                      "     )    . <'-. ' .-',  _'._'.\n"
+                      "    '-.  '.-'`  )'/    \\/ \\(\n"
+                      "       `\\(      `;";
                       
-static char *candl1 = "            _...._\n"
-                      "          .:::\\::::.\n"
-                      "         :::::)`\\::::\n"
-                      "         ::::/  /::::";
+static char *candl1 = "\x01\x0b            _...._\n"
+                      "          .:::\x01\x0e\\\x01\x0b::::.\n"
+                      "         :::::\x01\x0e)`\\\x01\x0b::::\n"
+                      "         ::::\x01\x0e/  /\x01\x0b::::";
 
-static char *candl2 = "            _...._\n"
-                      "          .:::/::::.\n"
-                      "         :::/`(::::::\n"
-                      "         :::\\  \\:::::";
+static char *candl2 = "\x01\x0b            _...._\n"
+                      "          .:::\x01\x0e/\x01\x0b::::.\n"
+                      "         :::\x01\x0e/`(\x01\x0b::::::\n"
+                      "         :::\x01\x0e\\  \\\x01\x0b:::::";
 
 
 /* Pujdem spolu do betlema */
@@ -189,11 +193,13 @@ int main() {
         j4 = NULL;
         
         /* colors */
+        /*
         tui_cls_win(mainw, FALSE);
         tui_draw_box(1, 1, TUI_COL, TUI_BKCOL, colors, FALSE);
         tui_wait_for_any_key();
+        */
         
-        /* play */
+        /* betlem */
         pos_x = 13;
         pos_y = 1; 
         tui_cls_win(mainw, FALSE);
@@ -207,6 +213,7 @@ int main() {
         j3 = w_register_job(6, j3p, &snd_play_sound);
         tui_wait_for_any_key();
         
+        /* candle */
         w_unregister_job(j3);
         j3 = NULL;
         snd_speaker(0);
