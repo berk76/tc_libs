@@ -24,29 +24,24 @@
 
 static char *floating_text = "Merry Christmas to all users of oldcomp.cz, "
 "doshaven.eu, high-voltage.cz and also to all good people around the World! "
-"  - berk - (see github.com/berk76/tc_libs for sources)";
+"  - berk -  (see github.com/berk76/tc_libs for sources)";
 
-
-/*
-*       Colors:
-*       -------
-*       blue            \x01\x01
-*       green           \x01\x02
-*       cyan            \x01\x03
-*       red             \x01\x04
-*       magenta         \x01\x05
-*       brown           \x01\x06
-*       lightgray       \x01\x0d
-*       darkgray        \x01\x08
-*       lightblue       \x01\x09
-*       lightgreen      \x01\x0a
-*       lightcyan       \x01\x0b
-*       lightred        \x01\x0c
-*       lightmagenta    \x01\x0d
-*       yellow          \x01\x0e
-*       white           \x01\x0f
-*/
-
+/* Colors: */
+static char *colors = "\x01\x01 blue            \\x01\\x01\n"
+                      "\x01\x02 green           \\x01\\x02\n"
+                      "\x01\x03 cyan            \\x01\\x03\n"
+                      "\x01\x04 red             \\x01\\x04\n"
+                      "\x01\x05 magenta         \\x01\\x05\n"
+                      "\x01\x06 brown           \\x01\\x06\n"
+                      "\x01\x07 lightgray       \\x01\\x07\n"
+                      "\x01\x08 darkgray        \\x01\\x08\n"
+                      "\x01\x09 lightblue       \\x01\\x09\n"
+                      "\x01\x0a lightgreen      \\x01\\x0a\n"
+                      "\x01\x0b lightcyan       \\x01\\x0b\n"
+                      "\x01\x0c lightred        \\x01\\x0c\n"
+                      "\x01\x0d lightmagenta    \\x01\\x0d\n"
+                      "\x01\x0e yellow          \\x01\\x0e\n"
+                      "\x01\x0f white           \\x01\\x0f\n";
 
 static char *betlem = "                            \x01\x0f-\n" 
                       "                          \x01\x0e/\\\x01\x0dO\x01\x0e/\\\n"
@@ -56,23 +51,44 @@ static char *betlem = "                            \x01\x0f-\n"
                       "\x01\x06.-----------------------------------------------------.\n"
                       "| __  ___________________   \x01\x0e|\x01\x06   _________________  __ |\n"
                       "|| / /                    \x01\x0f'\x01\x0e.|.\x01\x0f'\x01\x06                  \\ \\ ||\n"
-                      "||/ /            ___     \x01\x0e-= \x01\x0f+ \x01\x0e=-\x01\x06                  \\ \\||\n"
+                      "||/ /            \x01\x04___     \x01\x0e-= \x01\x0f+ \x01\x0e=-\x01\x06                  \\ \\||\n"
                       "|  /           \x01\x0e*******    \x01\x0f.\x01\x0e'|'\x01\x0f.\x01\x09      ___\x01\x06           \\  |\n"
-                      "| /            /-====)      \x01\x0e|      *******\x01\x06          \\ |\n"
-                      "||             | / \x01\x0d-(       \x01\x0e|      \x01\x0d(_.- \x01\x09))\x01\x06           ||\n"
-                      "||            / /  \x01\x0d_/               )- ) \x01\x09))\x01\x06          ||\n"
-                      "||            | |\x01\x0d-(    _            \\_(  \x01\x09((\x01\x06          ||\n"
-                      "||            / |  \\  \x01\x0d//|        _    )) \x01\x09) )\x01\x06         ||\n"
-                      "||           /  \\   \\/\\\x01\x0d/        |\\\\  \x01\x09/\x01\x0d'-\x01\x09( (\x01\x06          ||\n"
-                      "||          |   |\\    /    \x01\x0e***   \x01\x0d\\\x01\x09/\\/  / ) )\x01\x06         ||\n"
-                      "||          `-;/==;--'     .=.    \x01\x09\\   / (  (\x01\x06         ||\n"
-                      "||            |    \\    _\\/\x01\x0d(_)\x01\x06\\/_  \x01\x09'-;==)   )\x01\x06        ||\n"
-                      "||            |     \\    |'---'|    \x01\x09/  (   (\x01\x06         ||\n"
-                      "||            |      \\  _|:.   |_  \x01\x09/   )    )\x01\x06        ||\n"
-                      "||          _/        |  /\\:. /\\  \x01\x09|   (     (\x01\x06        ||\n"
-                      "||       \x01\x0d.-\x01\x06/         /     '='    \x01\x09\\    (     )\x01\x0d-.\x01\x06     ||\n"
-                      "||jgs   \x01\x0d`\"\"\x01\x06---`-----`              \x01\x09`----`----\x01\x0d`\"\"`\x01\x06    ||";
-
+                      "| /            \x01\x04/-====)      \x01\x0e|      *******\x01\x06          \\ |\n"
+                      "||             \x01\x04| / \x01\x0d-(       \x01\x0e|      \x01\x0d(_.- \x01\x09))\x01\x06           ||\n"
+                      "||            \x01\x04/ /  \x01\x0d_/               )- ) \x01\x09))\x01\x06          ||\n"
+                      "||            \x01\x04| |\x01\x0d-(    _            \\_(  \x01\x09((\x01\x06          ||\n"
+                      "||            \x01\x04/ |  \\  \x01\x0d//|        _    )) \x01\x09) )\x01\x06         ||\n"
+                      "||           \x01\x04/  \\   \\/\\\x01\x0d/        |\\\\  \x01\x09/\x01\x0d'-\x01\x09( (\x01\x06          ||\n"
+                      "||          \x01\x04|   |\\    /    \x01\x0e***   \x01\x0d\\\x01\x09/\\/  / ) )\x01\x06         ||\n"
+                      "||          \x01\x04`-;/==;--'     \x01\x06.=.    \x01\x09\\   / (  (\x01\x06         ||\n"
+                      "||            \x01\x04|    \\    \x01\x06_\x01\x06\\/\x01\x0d(_)\x01\x06\\/_  \x01\x09'-;==)   )\x01\x06        ||\n"
+                      "||            \x01\x04|     \\    \x01\x06|'---'|    \x01\x09/  (   (\x01\x06         ||\n"
+                      "||            \x01\x04|      \\  \x01\x06_|:.   |_  \x01\x09/   )    )\x01\x06        ||\n"
+                      "||          \x01\x04_/        |  \x01\x06/\\:. /\\  \x01\x09|   (     (\x01\x06        ||\n"
+                      "||       \x01\x0d.-\x01\x04/         /     \x01\x06'='    \x01\x09\\    (     )\x01\x0d-.\x01\x06     ||\n"
+                      "||jgs   \x01\x0d`\"\"\x01\x04---`-----`              \x01\x09`----`----\x01\x0d`\"\"`\x01\x06    ||";
+                            
+static char *cross1 = "\x01\x0e   |   \n"
+                      "\x01\x0f '\x01\x0e.|.\x01\x0f'\n"
+                      "\x01\x0e-= \x01\x0f+ \x01\x0e=-\n"
+                      "\x01\x0f .\x01\x0e'|'\x01\x0f.\n"
+                      "\x01\x0e   |   \n"
+                      "   |";
+                      
+static char *cross2 = "\x01\x0e   |   \n"
+                      "\x01\x0f '+\x01\x0e|\x01\x0f+'\n"
+                      "\x01\x0e-= \x01\x0f* \x01\x0e=-\n"
+                      "\x01\x0f .+\x01\x0e|\x01\x0f+.\n"
+                      "\x01\x0e   |   \n"
+                      "   |";
+                      
+static char *cross3 = "\x01\x0f\\\x01\x0e  |  \x01\x0f/\n"
+                      "\x01\x0f '*\x01\x0e|\x01\x0f*'\n"
+                      "\x01\x0e-= \x01\x0f+ \x01\x0e=-\n"
+                      "\x01\x0f .*\x01\x0f|\x01\x0f*.\n"
+                      "\x01\x0f/  \x01\x0e|  \x01\x0f\\\n"
+                      "\x01\x0e   |";
+   
 static char *candle = "            _...._\n"
                       "          .:::\\::::.\n"
                       "         :::::)`\\::::\n"
@@ -155,12 +171,13 @@ static JOB_T *j3;       /* sound */
 static JOB_T *j4;       /* animations */
 #define j4p -1
 
-static int candle_x, candle_y;
+static int pos_x, pos_y;
 
 static SND_SONG song;
 static int play_sound;
 
-static long animate_scr(enum W_ACTION a);
+static long animate_betlem(enum W_ACTION a);
+static long animate_candle(enum W_ACTION a);
 static long draw_floating_text(enum W_ACTION a);
 
 
@@ -171,10 +188,17 @@ int main() {
         j3 = NULL;
         j4 = NULL;
         
-        
-        /* play */ 
+        /* colors */
         tui_cls_win(mainw, FALSE);
-        tui_draw_box(13, 1, TUI_COL, TUI_BKCOL, betlem, FALSE);
+        tui_draw_box(1, 1, TUI_COL, TUI_BKCOL, colors, FALSE);
+        tui_wait_for_any_key();
+        
+        /* play */
+        pos_x = 13;
+        pos_y = 1; 
+        tui_cls_win(mainw, FALSE);
+        tui_draw_box(pos_x, pos_y, TUI_COL, TUI_BKCOL, betlem, FALSE);
+        j4 = w_register_job(18, j4p, &animate_betlem);
         
         song.duration = SD1;
         song.rest = SR1;
@@ -186,12 +210,14 @@ int main() {
         w_unregister_job(j3);
         j3 = NULL;
         snd_speaker(0);
+        w_unregister_job(j4);
+        j4 = NULL;
         
-        candle_x = 25;
-        candle_y = 4;        
+        pos_x = 25;
+        pos_y = 4;        
         tui_cls_win(mainw, FALSE);
-        tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candle, FALSE);
-        j4 = w_register_job(18, j4p, &animate_scr);
+        tui_draw_box(pos_x, pos_y, TUI_COL, TUI_BKCOL, candle, FALSE);
+        j4 = w_register_job(18, j4p, &animate_candle);
         
         song.duration = SD2;
         song.rest = SR2;
@@ -203,7 +229,6 @@ int main() {
         w_unregister_job(j3);
         j3 = NULL;
         snd_speaker(0);
-        
         w_unregister_job(j4);
         j4 = NULL;
         
@@ -221,7 +246,7 @@ int main() {
 }
 
 
-long animate_scr(enum W_ACTION a) {
+long animate_betlem(enum W_ACTION a) {
         static int step = -1;
         static int paused = 0;
         int r;
@@ -247,13 +272,62 @@ long animate_scr(enum W_ACTION a) {
                         
                 switch (step) {
                         case 0:
-                                tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candl2, FALSE);
+                                tui_draw_box(pos_x + 25, pos_y + 6, TUI_COL, TUI_BKCOL, cross1, FALSE);
+                                tui_flush();
+                                step = 1;
+                                r = 30;
+                                break;
+                        case 1:
+                                tui_draw_box(pos_x + 25, pos_y + 6, TUI_COL, TUI_BKCOL, cross2, FALSE);
+                                tui_flush();      
+                                step = 2;
+                                r = 15;
+                                break;
+                        case 2:
+                                tui_draw_box(pos_x + 25, pos_y + 6, TUI_COL, TUI_BKCOL, cross3, FALSE);
+                                tui_flush();
+                                step = 0;
+                                r = 5;
+                                break;
+                }        
+        }
+        return r;
+}
+
+
+long animate_candle(enum W_ACTION a) {
+        static int step = -1;
+        static int paused = 0;
+        int r;
+        
+        
+        if ((a == RESET) || (step == -1)) {
+                step = 0;
+                paused = 0;
+                return 0;        
+        }
+        
+        if (a == PAUSE) {
+                paused = 1;
+        }
+        
+        if (a == UNPAUSE) {
+                paused = 0;
+        }            
+        
+        if (a == RUN) {
+                if (paused != 0)
+                        return 0;
+                        
+                switch (step) {
+                        case 0:
+                                tui_draw_box(pos_x, pos_y, TUI_COL, TUI_BKCOL, candl2, FALSE);
                                 tui_flush();
                                 step = 1;
                                 r = 5;
                                 break;
                         case 1:
-                                tui_draw_box(candle_x, candle_y, TUI_COL, TUI_BKCOL, candl1, FALSE);
+                                tui_draw_box(pos_x, pos_y, TUI_COL, TUI_BKCOL, candl1, FALSE);
                                 tui_flush();
                                 step = 0;
                                 r = 30;
