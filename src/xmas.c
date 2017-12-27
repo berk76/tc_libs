@@ -128,17 +128,17 @@ static char *candl2 = "\x01\x0b            _...._\n"
 #define SD1 23
 #define SR1 60
 static SND_PLAY_NOTE s1[] = {{F4,N8},{F4,N8},{C4,N8},{C4,N8},
-                             {B4,N8},{B4,N8},{F4,N8},{F4,N8},
-                             {A4S,N16},{C5,N16},{D5,N16},{C5,N16},{A4,N16},{C5,N16},{D5,N16},{C5,N16},
-                             {A4S,N16},{C5,N16},{D5,N16},{A4,N16},{C5,N4},
-                             {A4,N8},{A4,N16},{D5,N16},{G4,N4},
-                             {B4,N8},{B4,N16},{C5,N16},{F4,N4},
+                             {A4,N8},{A4,N8},{F4,N8},{F4,N8},
+                             {B4,N16},{C5,N16},{D5,N16},{C5,N16},{B4,N16},{C5,N16},{D5,N16},{C5,N16},
+                             {B4,N16},{C5,N16},{D5,N16},{B4,N16},{C5,N4},
+                             {B4,N8},{B4,N16},{D5,N16},{G4,N4},
+                             {A4,N8},{A4,N16},{C5,N16},{F4,N4},
                              {G4,N8},{G4,N8},{F4,N16},{E4,N16},{D4,N16},{C4,N16},
-                             {F4,N8},{B4,N8},{F4,N8},{B4,N8},
-                             {A4,N8},{A4,N16},{D5,N16},{G4,N4},
-                             {B4,N8},{B4,N16},{C5,N16},{F4,N4},
+                             {F4,N8},{A4,N8},{F4,N8},{A4,N8},
+                             {B4,N8},{B4,N16},{D5,N16},{G4,N4},
+                             {A4,N8},{A4,N16},{C5,N16},{F4,N4},
                              {G4,N8},{G4,N8},{F4,N16},{E4,N16},{D4,N16},{C4,N16},
-                             {F4,N8},{B4,N8},{F4,N8},{REST,N8},
+                             {F4,N8},{A4,N8},{F4,N8},{REST,N8},
                              {REPEAT,N1}
                 };
                 
@@ -147,16 +147,16 @@ static SND_PLAY_NOTE s1[] = {{F4,N8},{F4,N8},{C4,N8},{C4,N8},
 #define SR2 60
 static SND_PLAY_NOTE s2[] = {{F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
                              {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
-                             {C5,N2},{C5,N4},{B4,N2DOT},
-                             {A4,N2},{A4,N4},{F4,N2DOT},
-                             {G4,N2},{G4,N4},{A4,N4},{B4,N4},{G4,N4},
+                             {C5,N2},{C5,N4},{A4,N2DOT},
+                             {B4,N2},{B4,N4},{F4,N2DOT},
+                             {G4,N2},{G4,N4},{B4,N4},{A4,N4},{G4,N4},
                              {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
-                             {G4,N2},{G4,N4},{A4,N4DOT},{B4,N8},{G4,N4},
+                             {G4,N2},{G4,N4},{B4,N4DOT},{A4,N8},{G4,N4},
                              {F4,N4DOT},{G4,N8},{F4,N4},{D4,N2DOT},
-                             {C5,N4},{C5,N4},{C5,N4},{E5,N4DOT},{C5,N8},{B4,N4},
+                             {C5,N4},{C5,N4},{C5,N4},{E5,N4DOT},{C5,N8},{A4,N4},
                              {B4,N2DOT},{D5,N2DOT},
                              {B4,N4DOT},{F4,N8},{D4,N4},{F4,N4DOT},{E4,N8},{C4,N4},
-                             {A3,N2DOT},{A3,N2},{REST,N2},
+                             {B3,N2DOT},{B3,N2},{REST,N2},
                              {REPEAT,N1}
                 };
 
