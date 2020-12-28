@@ -11,5 +11,5 @@ trim_trailing_whitespace = false
 insert_final_newline = true
 
 # Tab indentation (no size specified)
-[Makefile]
+[Makefile*]
 indent_style = tab
